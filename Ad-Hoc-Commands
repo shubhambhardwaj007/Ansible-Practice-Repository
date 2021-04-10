@@ -2,3 +2,4 @@ ansible all -m ping
 ansible all -m service -a "name=httpd state=running"
 ansible all -m package -a "name=httpd state=present"
 ansible all -m copy -a "src=./webserver.html dest=/var/www/html"
+ansible-playbook --syntax-check webserver_config.yml

@@ -1,23 +1,27 @@
 ---
 - hosts: all
+  vars_prompt:
+          - name: dvd_mount_dir
+            private: no
+            prompt: "ENTER DVD MOUNTPOINT"
   tasks:
           - file:
                   state: directory
-                  path: "/redhat_iso_dir"
+                  path: "/{{  dvd_mount_dir }}"
           - mount:
                   src: "/dev/cdrom"
-                  path: "/redhat_iso_dir"
+                  path: "/{{ dvd_mount_dir }}"
                   state: "mounted"
                   fstype: "iso9660"
           - yum_repository:
                   name: "BASEOS"
                   description: "Adding baseos repository"
                   file: redhat_iso
-                  baseurl: file:///redhat_iso_dir/BaseOS
+                  baseurl: file:///{{ dvd_mount_dir }}/BaseOS
                   gpgcheck: no
           - yum_repository:
                   name: "APPSTREAM"
                   description: "Adding appstream repository"
                   file: redhat_iso
-                  baseurl: file:///redhat_iso_dir/AppStream
+                  baseurl: file:///{{ dvd_mount_dir }}/AppStream
                   gpgcheck: no

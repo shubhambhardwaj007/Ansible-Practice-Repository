@@ -1,0 +1,10 @@
+---
+- hosts: all
+  tasks:
+          - command: date
+            register: x
+          - debug:
+                  msg: "hello testing!!!!"
+            when: x.rc == 0
+          - debug:
+                  var: x.rc

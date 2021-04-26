@@ -35,6 +35,7 @@
                   permanent: yes
                   immediate: yes
   handlers:
-          - service:
+          - name: webserver_restarted
+            service:
                   name: "httpd"
                   state: restarted

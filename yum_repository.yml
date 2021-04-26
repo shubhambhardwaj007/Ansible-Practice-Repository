@@ -21,22 +21,3 @@
                   file: redhat_iso
                   baseurl: file:///redhat_iso_dir/AppStream
                   gpgcheck: no
-          - package:
-                  name: "httpd"
-                  state: "present"
-          - copy:
-                  dest: "/var/www/html/index.html"
-                  content: "THIS IS TESTING WEBSITE"
-          - service:
-                  name: "httpd"
-                  state: "started"
-                  enabled: yes
-          - service:
-                  name: "firewalld"
-                  state: "started"
-                  enabled: yes
-          - firewalld:
-                  port: "80/tcp"
-                  state: enabled
-                  permanent: yes
-                  immediate: yes

@@ -9,4 +9,21 @@
                   path: "/redhat_iso_dir"
                   state: "mounted"
                   fstype: "iso9660"
-
+          - yum_repository:
+                  name: "BASEOS"
+                  description: "Adding baseos repository"
+                  file: redhat_iso
+                  baseurl: file:///redhat_iso_dir/BaseOS
+                  gpgcheck: no
+          - yum_repository:
+                  name: "APPSTREAM"
+                  description: "Adding appstream repository"
+                  file: redhat_iso
+                  baseurl: file:///redhat_iso_dir/AppStream
+                  gpgcheck: no
+          - package:
+                  name: "httpd"
+                  state: "present"
+          - copy:
+                  dest: "/var/www/html/index.html"
+                  content: "THIS IS TESTING WEBSITE"

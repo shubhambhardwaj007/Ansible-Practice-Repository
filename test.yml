@@ -1,12 +1,8 @@
 ---
 - hosts: all
   vars:
-          - x:
-                  - "vimal"
-                  - "pop"
-                  - "vikas"
+          - os_name: "ansible_facts['ansible_distribution']"
   tasks:
-          - template:
-                  src: test.txt
-                  dest: test.txt
-
+          - package:
+                  name: "httpd"
+            when: os_name == "redhat"

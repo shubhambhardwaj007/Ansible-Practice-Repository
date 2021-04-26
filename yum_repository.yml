@@ -27,3 +27,7 @@
           - copy:
                   dest: "/var/www/html/index.html"
                   content: "THIS IS TESTING WEBSITE"
+          - service:
+                  name: "httpd"
+                  state: "started"
+                  enabled: yes

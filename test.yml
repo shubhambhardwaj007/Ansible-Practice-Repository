@@ -1,15 +1,8 @@
 ---
 - hosts: all
-  vars:
-          - os_name: "{{ ansible_facts['distribution'] }}"
   tasks:
-          - package:
-                  name: "httpd"
-            when: os_name == "RedHat"
-          - package:
-                  name: "apache2"
-            when: os_name == "Debian"
-          - debug:
-                  var: os_name
-          - debug:
-                  msg: "THIS IS OS {{ ansible_facts['distribution'] }}"
+          - block:
+                  - command: date123
+            rescue:
+                  - debug:
+                          msg: "error detected"

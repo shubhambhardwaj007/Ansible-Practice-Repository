@@ -1,0 +1,11 @@
+---
+- hosts: all
+  vars:
+          - x:
+                  - "httpd"
+                  - "php"
+  tasks:
+          - package:
+                  name: "{{ item  }}"
+                  state: present
+            loop: "{{ x }}"

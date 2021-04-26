@@ -1,5 +1,8 @@
 ---
 - hosts: all
   tasks:
-          - debug:
-                  msg: "{{ ansible_facts['system'] }}"
+          - copy:
+                  dest: "/root/test.txt"
+                  content: >
+                          "hello \n
+                          \nshhhsbsbs\nsjssbsjbsjsbjs\nsshsvshvshsvsvsvshv\nsnsnssnssnsbssbssbsbssbssbsbsbbbsbssbsbbsbsssbssbsbsbsbsbsbsbsbs\n\nsfsfs\n"

@@ -1,8 +1,12 @@
 ---
 - hosts: all
+  vars:
+          - x:
+                  - "vimal"
+                  - "pop"
+                  - "vikas"
   tasks:
-          - copy:
-                  dest: "/root/test.txt"
-                  content: >
-                          "hello \n
-                          \nshhhsbsbs\nsjssbsjbsjsbjs\nsshsvshvshsvsvsvshv\nsnsnssnssnsbssbssbsbssbssbsbsbbbsbssbsbbsbsssbssbsbsbsbsbsbsbsbs\n\nsfsfs\n"
+          - template:
+                  src: test.txt
+                  dest: test.txt
+

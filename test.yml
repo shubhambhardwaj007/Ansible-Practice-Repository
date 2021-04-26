@@ -1,8 +1,12 @@
 ---
 - hosts: all
   vars:
-          - os_name: "ansible_facts['ansible_distribution']"
+          - os_name: "{{ ansible_facts['distribution'] }}"
   tasks:
           - package:
                   name: "httpd"
-            when: os_name == "redhat"
+            when: os_name == "RedHat"
+          - debug:
+                  var: os_name
+          - debug:
+                  msg: "THIS IS OS {{ ansible_facts['distribution'] }}"

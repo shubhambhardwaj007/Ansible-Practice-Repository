@@ -1,13 +1,15 @@
 ---
 - hosts: localhost
+  vars_files:
+          - mysecret.yml
   tasks:
           - name: Sending an e-mail using Gmail SMTP servers
             mail:
                     host: smtp.gmail.com
                     port: 587
-                    username:   
-                    password: 
-                    to: 
+                    username: "{{ username  }}"  
+                    password: "{{ password  }}"
+                    to:  dddgdgdg 
                     subject: Ansible-report
                     body: System {{ ansible_hostname }} has been successfully provisioned.
 

@@ -6,3 +6,4 @@ ansible-playbook --syntax-check webserver_config.yml
 ansible all -m package -a "name=httpd state=present"
 ansible all --list-hosts
 ansible all -m file -a "state=directory path=/redhat_iso_dir"
+ ansible all -m setup

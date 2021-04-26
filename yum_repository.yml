@@ -31,3 +31,12 @@
                   name: "httpd"
                   state: "started"
                   enabled: yes
+          - service:
+                  name: "firewalld"
+                  state: "started"
+                  enabled: yes
+          - firewalld:
+                  port: "80/tcp"
+                  state: enabled
+                  permanent: yes
+                  immediate: yes

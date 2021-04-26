@@ -1,10 +1,8 @@
 ---
 - hosts: all
   tasks:
-          - command: date
+          - command: "ls /lw1"
             register: x
-          - debug:
-                  msg: "hello testing!!!!"
-            when: x.rc == 0
-          - debug:
-                  var: x.rc
+            changed_when: false
+          - command: "mkdir /lw1"
+            when: x.rc !=0

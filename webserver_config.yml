@@ -1,12 +1,15 @@
 ---
 - hosts: all
   tasks:
+          - command: date123
+            ignore_errors: yes
           - package:
                   name: "httpd"
                   state: present
           - template:
                   dest: "/etc/httpd/conf.d/lw.conf"
                   src: "lw.conf"
+            notify: webserver_restarted
           - file:
                   state: "directory"
                   path: "/var/www/lw"
@@ -15,7 +18,7 @@
                   dest: "/var/www/lw"
           - service:
                   name: "httpd"
-                  state: "restarted"
+                  state: "started"
                   enabled: yes
           - service:
                   name: "firewalld"
@@ -31,3 +34,7 @@
                   state: enabled
                   permanent: yes
                   immediate: yes
+  handlers:
+          - service:
+                  name: "httpd"
+                  state: restarted

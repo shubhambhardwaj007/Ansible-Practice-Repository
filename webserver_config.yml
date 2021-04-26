@@ -5,11 +5,17 @@
                   name: "httpd"
                   state: present
           - copy:
+                  dest: "/etc/httpd/conf.d/lw.conf"
+                  src: "lw.conf"
+          - file:
+                  state: "directory"
+                  path: "/var/www/lw"
+          - copy:
                   src: "index.html"
-                  dest: /var/www/html
+                  dest: "/var/www/lw"
           - service:
                   name: "httpd"
-                  state: "started"
+                  state: "restarted"
                   enabled: yes
           - service:
                   name: "firewalld"
@@ -17,6 +23,11 @@
                   enabled: yes
           - firewalld:
                   port: "80/tcp"
+                  state: enabled
+                  permanent: yes
+                  immediate: yes
+          - firewalld:
+                  port: "8080/tcp"
                   state: enabled
                   permanent: yes
                   immediate: yes

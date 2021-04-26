@@ -1,11 +1,16 @@
 ---
 - hosts: all
   vars:
-          - x:
-                  - "httpd"
-                  - "php"
+          - userdb:
+                  - name: "a1"
+                    password: "a1_pass"
+                    group: "a1_group"
+                  - name: "a2"
+                    password: "a2_pass"
+                    group: "a2_group"
   tasks:
-          - package:
-                  name: "{{ item  }}"
-                  state: present
-            loop: "{{ x }}"
+          - user:
+                  name: "{{ item.name }}"
+                  password: "{{ item.password }}"
+                  group: "{{ item.group }}"
+            loop: "{{ userdb }}"

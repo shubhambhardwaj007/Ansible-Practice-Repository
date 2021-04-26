@@ -4,7 +4,7 @@
           - package:
                   name: "httpd"
                   state: present
-          - copy:
+          - template:
                   dest: "/etc/httpd/conf.d/lw.conf"
                   src: "lw.conf"
           - file:

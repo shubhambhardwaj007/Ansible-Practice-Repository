@@ -1,0 +1,12 @@
+---
+- hosts: all
+  tasks:
+          - file:
+                  state: directory
+                  path: "/redhat_iso_dir"
+          - mount:
+                  src: "/dev/cdrom"
+                  path: "/redhat_iso_dir"
+                  state: "mounted"
+                  fstype: "iso9660"
+
